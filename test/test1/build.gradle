@@ -1,0 +1,39 @@
+buildscript {
+    dependencies {
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.1'
+    }
+}
+
+wrapper {
+    gradleVersion = '5.2.1'
+}
+
+apply plugin: 'application'
+apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
+apply plugin: 'eclipse'
+
+group = pGroup
+version = pVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+mainClassName = 'de.topobyte.TestPrint'
+
+startScripts.enabled = false
+
+scripts {
+    installationPath = 'topobyte/test-printer'
+    makeselfLabel = 'Test Printer'
+    createScript(project, 'de.topobyte.TestPrint', 'test-print')
+}
+
+distributions {
+    main {
+        baseName = 'test'
+    }
+}

@@ -1,0 +1,17 @@
+wrapper {
+    gradleVersion = '5.2.1'
+}
+
+allprojects {
+    group = pGroup
+    version = pVersion
+}
+
+subprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'maven'
+
+    repositories {
+        mavenCentral()
+    }
+}

@@ -1,0 +1,42 @@
+buildscript {
+    dependencies {
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.1'
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
+
+mainClassName = 'de.topobyte.TestPrint'
+
+startScripts.enabled = false
+
+scripts {
+    installationPath = 'topobyte/test-printer'
+    makeselfLabel = 'Test Printer'
+    createScript(project, 'de.topobyte.TestPrint', 'test-print')
+}
+
+dependencies {
+    compile project(':test-core')
+}
+
+distributions {
+    main {
+        baseName = 'test'
+    }
+}
+
+task copyJars(type: Copy) {
+    into "$buildDir/lib-run"
+    from jar
+}
+
+task copyDeps(type: Copy) {
+    into "$buildDir/lib-run"
+    from configurations.runtime
+}
+
+task createRuntime(dependsOn: [copyJars, copyDeps]) {
+    description 'Setup the execution environment for the scripts'
+}

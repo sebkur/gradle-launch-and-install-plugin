@@ -1,0 +1,4 @@
+includeBuild '../..'
+include 'core', 'exe'
+project(':core').name = 'test-core'
+project(':exe').name = 'test-exe'
