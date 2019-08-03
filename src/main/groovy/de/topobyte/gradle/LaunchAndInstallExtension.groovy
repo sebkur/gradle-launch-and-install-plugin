@@ -3,7 +3,7 @@ package de.topobyte.gradle;
 import org.gradle.jvm.application.tasks.CreateStartScripts
 import org.gradle.api.file.DuplicatesStrategy
 
-class ScriptsExtension {
+class LaunchAndInstallExtension {
 
     String installationPath
     String makeselfLabel

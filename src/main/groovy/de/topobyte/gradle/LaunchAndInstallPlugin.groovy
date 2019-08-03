@@ -5,10 +5,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.tasks.Sync
 
-class ScriptsPlugin implements Plugin<Project> {
+class LaunchAndInstallPlugin implements Plugin<Project> {
 
     void apply(Project project) {
-        def extension = project.extensions.create("scripts", ScriptsExtension)
+        def extension = project.extensions.create("launchAndInstall", LaunchAndInstallExtension)
 
         project.task('postInstallScript') {
             doLast {
