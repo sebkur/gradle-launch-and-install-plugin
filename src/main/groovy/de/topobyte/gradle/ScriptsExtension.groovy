@@ -9,6 +9,10 @@ class ScriptsExtension {
     String makeselfLabel
 
     def createScript(project, mainClass, name) {
+        createScript(project, mainClass, name, null)
+    }
+
+    def createScript(project, mainClass, name, options) {
         project.tasks.create(name: name, type: CreateStartScripts) {
             outputDir = new File(project.buildDir, 'scripts')
             mainClassName = mainClass
@@ -18,6 +22,12 @@ class ScriptsExtension {
                 project.ext.scriptNames = []
             }
             project.ext.scriptNames.add(name)
+            if (options != null) {
+                defaultJvmOpts = options
+                doLast {
+                    unixScript.text = unixScript.text.replaceAll('APP_HOME_PLACEHOLDER', '\\\$APP_HOME')
+                }
+            }
         }
 
         project.tasks[name].dependsOn(project.jar)
