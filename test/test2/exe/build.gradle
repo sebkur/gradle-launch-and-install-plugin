@@ -7,7 +7,9 @@ buildscript {
 apply plugin: 'application'
 apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
 
-mainClassName = 'de.topobyte.TestPrint'
+application {
+    mainClass = 'de.topobyte.TestPrint'
+}
 
 startScripts.enabled = false
 
@@ -18,12 +20,12 @@ launchAndInstall {
 }
 
 dependencies {
-    compile project(':test-core')
+    implementation project(':test-core')
 }
 
 distributions {
     main {
-        baseName = 'test'
+        distributionBaseName = 'test'
     }
 }
 
@@ -34,7 +36,7 @@ task copyJars(type: Copy) {
 
 task copyDeps(type: Copy) {
     into "$buildDir/lib-run"
-    from configurations.runtime
+    from configurations.runtimeOnly
 }
 
 task createRuntime(dependsOn: [copyJars, copyDeps]) {

@@ -15,7 +15,7 @@ class LaunchAndInstallPlugin implements Plugin<Project> {
                 if (extension.installationPath == null) {
                     throw new InvalidUserDataException("You need to specify the installationPath")
                 }
-                def baseName = "$project.distributions.main.baseName"
+                def baseName = project.distributions.main.distributionBaseName.get()
                 def installationPath = "\$HOME/share/$extension.installationPath/$baseName-snapshot"
 
                 def file1 = new File("$project.buildDir/setup/install.sh")
@@ -31,7 +31,7 @@ class LaunchAndInstallPlugin implements Plugin<Project> {
                 if (extension.installationPath == null) {
                     throw new InvalidUserDataException("You need to specify the installationPath")
                 }
-                def baseName = "$project.distributions.main.baseName"
+                def baseName = project.distributions.main.distributionBaseName.get()
 
                 def file = new File("$project.buildDir/makeself/install.sh")
                 createFullInstallScript(project, file, "\$HOME/share/$extension.installationPath/$baseName-$project.version")
@@ -60,7 +60,7 @@ class LaunchAndInstallPlugin implements Plugin<Project> {
     }
 
     def makeself(project, label) {
-        def baseName = "$project.distributions.main.baseName"
+        def baseName = project.distributions.main.distributionBaseName.get()
         project.exec { executable 'makeself' args "$project.buildDir/makeself",
                        "$project.buildDir/$baseName-${project.version}.run",
                        label, "./install.sh"}

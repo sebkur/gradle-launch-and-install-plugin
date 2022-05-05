@@ -5,7 +5,7 @@ buildscript {
 }
 
 wrapper {
-    gradleVersion = '5.2.1'
+    gradleVersion = '7.4.2'
 }
 
 apply plugin: 'application'
@@ -22,7 +22,9 @@ repositories {
 dependencies {
 }
 
-mainClassName = 'de.topobyte.TestPrint'
+application {
+    mainClass = 'de.topobyte.TestPrint'
+}
 
 startScripts.enabled = false
 
@@ -34,6 +36,6 @@ launchAndInstall {
 
 distributions {
     main {
-        baseName = 'test'
+        distributionBaseName = 'test'
     }
 }

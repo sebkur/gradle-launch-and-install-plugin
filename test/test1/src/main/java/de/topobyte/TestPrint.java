@@ -6,7 +6,7 @@ public class TestPrint
 	public static void main(String[] args)
 	{
 		Printer printer = new Printer();
-		printer.print("test");
+		printer.print("test1");
 	}
 
 }

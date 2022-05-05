@@ -12,10 +12,10 @@ class LaunchAndInstallExtension {
         createScript(project, mainClass, name, null)
     }
 
-    def createScript(project, mainClass, name, options) {
+    def createScript(project, mainClassName, name, options) {
         project.tasks.create(name: name, type: CreateStartScripts) {
             outputDir = new File(project.buildDir, 'scripts')
-            mainClassName = mainClass
+            mainClass = mainClassName
             applicationName = name
             classpath = project.tasks.startScripts.classpath
             if (!project.hasProperty('scriptNames')) {
