@@ -1,0 +1,19 @@
+eclipse.project.name = 'launch-and-install-gradle-plugin-test1'
+
+application {
+    mainClass = 'de.topobyte.TestPrint'
+}
+
+startScripts.enabled = false
+
+launchAndInstall {
+    installationPath = 'topobyte/test-printer'
+    makeselfLabel = 'Test Printer'
+    createScript(project, 'de.topobyte.TestPrint', 'test-print')
+}
+
+distributions {
+    main {
+        distributionBaseName = 'test'
+    }
+}
