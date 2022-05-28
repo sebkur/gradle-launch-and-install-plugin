@@ -19,6 +19,10 @@ launchAndInstall {
     createScript(project, 'de.topobyte.TestPrint', 'test-print')
 }
 
+configurations {
+    runtime.extendsFrom(compileClasspath, runtimeOnly)
+}
+
 dependencies {
     implementation project(':test-core')
 }
@@ -36,7 +40,7 @@ task copyJars(type: Copy) {
 
 task copyDeps(type: Copy) {
     into "$buildDir/lib-run"
-    from configurations.runtimeOnly
+    from configurations.runtime
 }
 
 task createRuntime(dependsOn: [copyJars, copyDeps]) {
