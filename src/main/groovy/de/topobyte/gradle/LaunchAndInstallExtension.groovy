@@ -25,7 +25,7 @@ class LaunchAndInstallExtension {
 			if (options != null) {
 				defaultJvmOpts = options
 				doLast {
-					unixScript.text = unixScript.text.replaceAll('APP_HOME_PLACEHOLDER', '\\\$APP_HOME')
+					unixScript.text = unixScript.text.replace('APP_HOME_PLACEHOLDER', "'\$APP_HOME'")
 				}
 			}
 		}
